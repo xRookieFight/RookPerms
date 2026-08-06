@@ -1,0 +1,71 @@
+name: Nightly
+
+on:
+  push:
+    branches: [master]
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  nightly:
+    name: Build nightly
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Check for new commits
+        id: changes
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "build=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ -z "$(git log --since='24 hours ago' --oneline)" ]; then
+            echo "No commits in the last 24 hours, skipping."
+            echo "build=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "build=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install Rust
+        if: steps.changes.outputs.build == 'true'
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: wasm32-wasip2
+
+      - uses: Swatinem/rust-cache@v2
+        if: steps.changes.outputs.build == 'true'
+
+      - name: Build
+        if: steps.changes.outputs.build == 'true'
+        run: cargo build --release --target wasm32-wasip2
+
+      - name: Package
+        if: steps.changes.outputs.build == 'true'
+        run: |
+          mkdir -p dist
+          cp target/wasm32-wasip2/release/rookperms.wasm dist/
+          cd dist
+          sha256sum rookperms.wasm > rookperms.wasm.sha256
+
+      - name: Publish nightly
+        if: steps.changes.outputs.build == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: nightly
+          name: Nightly build
+          body: |
+            Unstable build from `${{ github.sha }}`.
+
+            Not recommended for production servers.
+          prerelease: true
+          make_latest: false
+          files: |
+            dist/rookperms.wasm
+            dist/rookperms.wasm.sha256

@@ -1,0 +1,13 @@
+[package]
+name = "rookperms-api"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Permission model and resolution engine used by RookPerms."
+
+[dependencies]
+serde = { workspace = true }
+
+[dev-dependencies]
+serde_json = "1"

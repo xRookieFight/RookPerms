@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or usage help
+    url: https://github.com/xRookieFight/RookPerms/discussions
+    about: Ask about setting up groups, inheritance or contexts.
+  - name: Security vulnerability
+    url: https://github.com/xRookieFight/RookPerms/security/advisories/new
+    about: Report privilege escalation or any other security problem privately.
+  - name: PumpkinMC server issue
+    url: https://github.com/Pumpkin-MC/Pumpkin/issues
+    about: Problems in the server itself belong to the PumpkinMC project.

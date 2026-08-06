@@ -1,0 +1,17 @@
+[package]
+name = "rookperms"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "Group based permission management plugin for PumpkinMC."
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+rookperms-api = { workspace = true }
+pumpkin-plugin-api = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+tracing = { workspace = true }

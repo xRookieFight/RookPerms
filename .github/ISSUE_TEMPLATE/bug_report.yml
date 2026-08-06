@@ -1,0 +1,59 @@
+name: Bug report
+description: Something does not work the way it should
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not report security problems here. Use the
+        [security advisory form](https://github.com/xRookieFight/RookPerms/security/advisories/new).
+
+  - type: input
+    id: plugin-version
+    attributes:
+      label: RookPerms version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: input
+    id: server-version
+    attributes:
+      label: PumpkinMC version
+      placeholder: "commit hash or release"
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you expected and what you got instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      value: |
+        1. `/rp group ... `
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: data
+    attributes:
+      label: Permission data
+      description: >
+        The relevant files from the plugin data folder, with private information removed.
+      render: json
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Server log
+      description: Any errors or warnings printed by the server.
+      render: shell

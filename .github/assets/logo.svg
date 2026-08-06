@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="256" height="256" role="img" aria-label="RookPerms logo">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1fb6a8"/>
+      <stop offset="55%" stop-color="#2b6fd6"/>
+      <stop offset="100%" stop-color="#4b3fc4"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="cutout">
+      <rect x="0" y="0" width="100" height="100" fill="#000"/>
+      <path d="M28,22 h10 v9 h8 v-9 h8 v9 h8 v-9 h10 v20 l-6,5 v20 l9,15 h-50 l9,-15 v-20 l-6,-5 z" fill="#fff"/>
+      <circle cx="50" cy="52" r="5.5" fill="#000"/>
+      <path d="M50,54 l4,14 h-8 z" fill="#000"/>
+    </mask>
+  </defs>
+
+  <rect x="2" y="2" width="96" height="96" rx="22" fill="url(#bg)"/>
+  <rect x="2" y="2" width="96" height="48" rx="22" fill="url(#shine)"/>
+  <rect x="14" y="14" width="72" height="72" rx="16" fill="#0b1220" opacity="0.18"/>
+  <rect x="0" y="0" width="100" height="100" fill="#ffffff" mask="url(#cutout)"/>
+</svg>

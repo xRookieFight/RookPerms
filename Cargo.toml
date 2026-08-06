@@ -1,0 +1,21 @@
+[workspace]
+members = ["rookperms-api", "rookperms-plugin"]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+authors = ["xRookieFight"]
+license = "MIT"
+
+[workspace.dependencies]
+rookperms-api = { path = "rookperms-api" }
+pumpkin-plugin-api = { version = "0.1.0", git = "https://github.com/Pumpkin-MC/Pumpkin", package = "pumpkin-plugin-api" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tracing = "0.1"
+
+[profile.release]
+lto = true
+opt-level = "s"
+strip = true
