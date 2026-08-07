@@ -92,7 +92,7 @@ impl CommandHandler for GroupInfoHandler {
         args: ConsumedArgs,
     ) -> Result<i32, CommandError> {
         let name = group_name(&args)?;
-        let group = service(|permissions| permissions.group(&name).map(Group::clone))?
+        let group = service(|permissions| permissions.group(&name).cloned())?
             .map_err(map_error)?;
         let now = now_unix();
 
